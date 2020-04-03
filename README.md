@@ -1,12 +1,12 @@
 # dooms-day-QA
 
-# set uｐ
+# SET UP
 
 ### versions
 nodenv 1.3.2
 node 12.16.1
 
-### how to 
+# HOW TO 
 pull してきたdooms-day-QAのディレクトリの中で
 ~/w/dooms-day-QA ❯❯❯ nodenv local 12.16.1
 
