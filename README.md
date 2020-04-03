@@ -8,6 +8,7 @@ node 12.16.1
 
 # HOW TO 
 pull してきたdooms-day-QAのディレクトリの中で
+
 ~/w/dooms-day-QA ❯❯❯ nodenv local 12.16.1
 
 routeはdooms-day-QAディレクトリを指す
@@ -30,8 +31,8 @@ backendとclient それぞれのディレクトリ内で`npm isntall`を実行
 ### docker-compose.yml
 ```yml
     working_dir: /backend
-#    command: ["npm", "start"] ←のコメントアウト
-    command: ["./node_modules/.bin/nodemon", "app"] ←をコメントアウトを外す
+#    command: ["npm", "start"] ←をコメントアウト
+    command: ["./node_modules/.bin/nodemon", "app"] ←のコメントアウトを外す
     ports:
 ```
 
