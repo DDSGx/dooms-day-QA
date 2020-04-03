@@ -9,9 +9,11 @@ node 12.16.1
 # HOW TO 
 pull してきたdooms-day-QAのディレクトリの中で
 
+```
 ~/w/dooms-day-QA ❯❯❯ nodenv local 12.16.1
+```
 
-routeはdooms-day-QAディレクトリを指す
+`route`は`dooms-day-QA`ディレクトリを指す
 
 backendとclient それぞれのディレクトリ内で`npm isntall`を実行
 
