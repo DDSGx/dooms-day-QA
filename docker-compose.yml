@@ -1,0 +1,18 @@
+version: "3"
+services:
+  backend:
+    build: backend/.
+    volumes:
+      - ./backend:/backend
+    working_dir: /backend
+    command: ["./node_modules/.bin/nodemon", "app"]
+    ports:
+      - "3000:3000"
+  client:
+    build: client/.
+    volumes:
+      - ./client:/client
+    working_dir: /client
+    command: ["npm", "run", "serve"]
+    ports:
+      - "8080:8080"
