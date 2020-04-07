@@ -5,12 +5,14 @@ Vue.use(Router);
 
 import HelloWorld from "./components/HelloWorld";
 import Todo from './components/Todo';
+import Logs from './components/Logs';
 
 
 const router = new Router({
   routes: [
-      { path: '/', component: HelloWorld },
-      { path: '/todo', component: Todo }
+      { path: '/', component: Todo },
+      { path: '/logs', component: Logs },
+      { path: '/about', component: HelloWorld },
   ],
   mode: 'history'
 });
