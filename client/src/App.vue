@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <navigation-drawers/>
+    <navigation-drawers />
     <v-content>
       <router-view></router-view>
     </v-content>
