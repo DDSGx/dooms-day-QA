@@ -2,11 +2,7 @@
   <v-app>
     <navigation-drawers/>
     <v-content>
-      <v-container fluid fill-height>
-        <v-fade-transition mode="out-in">
-          <router-view></router-view>
-        </v-fade-transition>
-      </v-container>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
@@ -20,6 +16,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-</style>
