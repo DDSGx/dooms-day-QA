@@ -1,13 +1,20 @@
 <template>
   <div>
     <v-btn @click="addRow">add row</v-btn>
+    <v-btn @click="deleteBottomRow">delete bottom row</v-btn>
     <v-data-table
       :headers="headers"
       :items="QAs"
       :items-per-page="-1"
       class="elevation-1"
       hide-default-footer
-    ></v-data-table>
+      @click:row="clickedRow"
+    >
+      <template v-slot:item.action="{ item }">
+        <v-btn @click.stop="editRow">編集</v-btn>
+        <v-btn @click.stop="deleteRow(item)">削除</v-btn>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -18,25 +25,38 @@ export default {
     addRow() {
       this.QAs.push({no: this.QAs.length + 1 });
     },
-    deleteRow() {
-
+    deleteBottomRow() {
+      this.QAs.pop();
+      this.resetNo();
+    },
+    clickedRow(row){
+      alert('you clicked no ' + row.no);
+    },
+    deleteRow(item){
+      const newQAs = this.QAs.filter(element => !(element.no === item.no));
+      this.QAs = newQAs;
+      this.resetNo();
+    },
+    editRow(){
+      alert('編集機能は作成中です');
+    },
+    resetNo(){
+      for(let i = 0; i < this.QAs.length ; i++){
+        this.QAs[i].no = i + 1;
+      }
     }
-    
   },
   data() {
     return {
       headers: [
-        {
-          text: "No",
-          align: "start",
-          value: "no",
-        },
+        {text: "No",value: "no",},
         { text: "日時", value: "qDate" },
         { text: "質問者", value: "qPerson" },
         { text: "内容", value: "qText" },
         { text: "日時", value: "aDate" },
         { text: "回答者", value: "aPerson" },
         { text: "内容", value: "aText" },
+        { text: '操作', align: 'center', value: 'action', sortable: false }
       ],
       QAs: [
         {
