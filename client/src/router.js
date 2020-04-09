@@ -4,13 +4,13 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 import HelloWorld from "./components/HelloWorld";
-import Todo from './components/Todo';
 import Logs from './components/Logs';
+import QATable from './components/QATable';
 
 
 const router = new Router({
   routes: [
-      { path: '/', component: Todo },
+      { path: '/', component: QATable },
       { path: '/logs', component: Logs },
       { path: '/about', component: HelloWorld },
   ],
