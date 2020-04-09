@@ -1,10 +1,12 @@
 <template>
   <div>
+    <v-btn @click="addRow">add row</v-btn>
     <v-data-table
       :headers="headers"
       :items="QAs"
-      :items-per-page="10"
+      :items-per-page="-1"
       class="elevation-1"
+      hide-default-footer
     ></v-data-table>
   </div>
 </template>
@@ -12,13 +14,21 @@
 <script>
 export default {
   name: "QATable",
+  methods: {
+    addRow() {
+      this.QAs.push({no: this.QAs.length + 1 });
+    },
+    deleteRow() {
+
+    }
+    
+  },
   data() {
     return {
       headers: [
         {
           text: "No",
           align: "start",
-          sortable: false,
           value: "no",
         },
         { text: "日時", value: "qDate" },
@@ -31,7 +41,7 @@ export default {
       QAs: [
         {
           no: 1,
-          qDate: "2020/4/¥r¥n13:49",
+          qDate: "2020/4/ 13:49",
           qPerson: "質問 太郎",
           qText: "ログはどこに表示しますか？",
           aDate: "2020/4/2 9:00",
