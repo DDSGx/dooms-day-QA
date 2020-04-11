@@ -27,14 +27,16 @@
 export default {
   name: "navigation-drawers",
   data() {
-      return {
-          drawer: false,
-          items: [
-              {title: 'QATable', link: '/', icon: 'dashboard'},
-              {title: 'History', link: '/history', icon: 'account_tree'},
-              {title: 'About', link: '/about', icon: 'help'},
-          ],
-      }
+    return {
+      drawer: false,
+      items: [
+        {title: 'QATable', link: '/', icon: 'dashboard'},
+        {title: 'History', link: '/history', icon: 'account_tree'},
+        {title: 'About', link: '/about', icon: 'help'},
+        {title: 'Settings', link: '/settings', icon: 'settings'},
+        {title: 'Developers', link: '/developers', icon: 'people'},
+      ],
+    }
   },
 }
 </script>
