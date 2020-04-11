@@ -31,7 +31,7 @@ export default {
           drawer: true,
           items: [
               {title: 'QATable', link: '/', icon: 'dashboard'},
-              {title: 'Logs', link: '/logs', icon: 'account_tree'},
+              {title: 'History', link: '/history', icon: 'account_tree'},
               {title: 'About', link: '/about', icon: 'help'},
           ],
       }
