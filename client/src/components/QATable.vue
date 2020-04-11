@@ -9,10 +9,12 @@
       :items-per-page="-1"
       class="elevation-1"
       hide-default-footer
-      @click:row="clickedRow"
     >
+      <template v-slot:item.chat="{ item }">
+        <v-icon @click.stop="chatOpen(item)" >chat</v-icon>
+      </template>
       <template v-slot:item.action="{ item }">
-        <v-btn @click.stop="editRow(item)">編集</v-btn>
+        <v-icon @click.stop="editRow(item)" >edit</v-icon>
       </template>
     </v-data-table>
 
@@ -118,7 +120,7 @@ export default {
     addRow() {
         this.newQA_dialog.display = true;
     },
-    clickedRow(row) {
+    chatOpen(row) {
       if (this.chatNo === row.no) {
         this.chatNo = 0;
       }else{
@@ -180,7 +182,8 @@ export default {
         { text: "日時", value: "aDate" },
         { text: "回答者", value: "aPerson" },
         { text: "内容", value: "aText" },
-        { text: "操作", align: "center", value: "action", sortable: false }
+        { align: "center", value: "chat", sortable: false },
+        { align: "center", value: "action", sortable: false },
       ],
       QAs: [
         {
