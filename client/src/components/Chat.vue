@@ -12,7 +12,7 @@
     <v-divider class="mb-3"></v-divider>
 
     <!--  チャット表示  -->
-    <div v-for="(item) in chatModels" v-bind:key="item.id">
+    <div v-for="(item) in chatModels[no]" v-bind:key="item.id">
       <chat-line :chatModel="item"></chat-line>
     </div>
 
@@ -61,7 +61,10 @@ export default {
     },
     sendMessage() {
       if (this.text) {
-        this.chatModels.push({
+        if (!this.chatModels[this.no]){
+            this.chatModels[this.no] = [];
+        }
+        this.chatModels[this.no].push({
           qPerson: '回答太郎',
           qDate: this.nowDate,
           qText: this.text,
@@ -74,7 +77,7 @@ export default {
     return{
       no: this.chatModel.no,
       drawer: false,
-      chatModels: [],
+      chatModels: {},
       text:'',
     }
   },
@@ -83,8 +86,7 @@ export default {
       handler: function() {
         this.drawer = true;
         if (this.chatModel.no !== 0) {
-            this.no = this.chatModel.no;
-            this.chatModels.push(this.chatModel)
+          this.no = this.chatModel.no;
         }
       },
       deep: true
