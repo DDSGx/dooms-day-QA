@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-btn @click="addRow">add row</v-btn>
-    <v-btn @click="deleteBottomRow">delete bottom row</v-btn>
     <v-data-table
       :headers="headers"
       :items="QAs"
@@ -12,10 +11,48 @@
     >
       <template v-slot:item.action="{ item }">
         <v-btn @click.stop="editRow(item)">編集</v-btn>
-        <v-btn @click.stop="deleteRow(item)">削除</v-btn>
       </template>
     </v-data-table>
 
+    <!-- 新規追加用ダイアログ -->
+    <v-row justify="center">
+      <v-dialog v-model="newQA_dialog.display" persistent max-width="600px">
+        <v-card>
+          <v-card-title>
+            <span class="headline">QA 追加</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    label="質問者氏名"
+                    v-model="newQA_dialog.qPerson"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    label="質問内容"
+                    v-model="newQA_dialog.qText"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="addQA_close"
+              >Cancel</v-btn
+            >
+            <v-btn color="blue darken-1" text @click="addQA_save">Save</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+
+    <!-- 編集用ダイアログ -->
     <v-row justify="center">
       <v-dialog v-model="dialog.display" persistent max-width="600px">
         <v-card>
@@ -72,20 +109,9 @@ export default {
   name: "QATable",
   methods: {
     addRow() {
-      this.QAs.push({ no: this.QAs.length + 1 });
+      this.newQA_dialog.display = true;
     },
-    deleteBottomRow() {
-      this.QAs.pop();
-      this.resetNo();
-    },
-    clickedRow() {
-
-    },
-    deleteRow(item) {
-      const newQAs = this.QAs.filter(element => !(element.no === item.no));
-      this.QAs = newQAs;
-      this.resetNo();
-    },
+    clickedRow() {},
     editRow(item) {
       const selectedQA = this.QAs.find(element => element.no === item.no);
       this.dialog.no = selectedQA.no;
@@ -114,10 +140,20 @@ export default {
 
       this.dialog.display = false;
     },
-    resetNo() {
-      for (let i = 0; i < this.QAs.length; i++) {
-        this.QAs[i].no = i + 1;
-      }
+    addQA_save() {
+      this.QAs.push({
+        no: this.QAs.length + 1,
+        qPerson: this.newQA_dialog.qPerson,
+        qText: this.newQA_dialog.qText,
+        aPerson: "",
+        aText: ""
+      });
+      this.addQA_close();
+    },
+    addQA_close() {
+      this.newQA_dialog.qPerson = "";
+      this.newQA_dialog.qText = "";
+      this.newQA_dialog.display = false;
     }
   },
   data() {
@@ -139,7 +175,7 @@ export default {
           qPerson: "質問 太郎",
           qText: "ログはどこに表示しますか？",
           aDate: "2020/4/2 9:00",
-          aPerson: "回答　次郎",
+          aPerson: "回答 次郎",
           aText: "別のページに一覧で表示してください"
         },
         {
@@ -148,7 +184,7 @@ export default {
           qPerson: "田中 太郎",
           qText: "日付はどう表示しますか？",
           aDate: "2020/4/2 13:21",
-          aPerson: "高橋　次郎",
+          aPerson: "高橋 次郎",
           aText: "yyyy/MM/dd hh:mmで表示してください"
         },
         {
@@ -157,7 +193,7 @@ export default {
           qPerson: "佐藤 太郎",
           qText: "サイドメニューは必要ですか？",
           aDate: "2020/4/2 13:30",
-          aPerson: "山田　次郎",
+          aPerson: "山田 次郎",
           aText: "必要です"
         }
       ],
@@ -169,6 +205,11 @@ export default {
         aPerson: "",
         aText: ""
       },
+      newQA_dialog: {
+        display: false,
+        qPerson: "",
+        qText: ""
+      }
     };
   }
 };
