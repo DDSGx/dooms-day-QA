@@ -33,6 +33,7 @@ export default {
               {title: 'QATable', link: '/', icon: 'dashboard'},
               {title: 'History', link: '/history', icon: 'account_tree'},
               {title: 'About', link: '/about', icon: 'help'},
+              {title: 'Settings', link: '/settings', icon: 'settings'},
           ],
       }
   },

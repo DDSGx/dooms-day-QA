@@ -6,6 +6,7 @@ Vue.use(Router);
 import About from "./components/About";
 import History from './components/History';
 import QATable from './components/QATable';
+import Settings from './components/Settings';
 
 
 const router = new Router({
@@ -13,6 +14,7 @@ const router = new Router({
       { path: '/', component: QATable },
       { path: '/history', component: History },
       { path: '/about', component: About },
+      { path: '/settings', component: Settings },
   ],
   mode: 'history'
 });

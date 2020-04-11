@@ -1,6 +1,6 @@
 <template>
   <div>
-    <chat :chatNo="chatNo"/>
+    <chat :chatModel="chatModel"/>
 
     <v-btn @click="addRow">add row</v-btn>
     <v-data-table
@@ -11,10 +11,10 @@
       hide-default-footer
     >
       <template v-slot:item.chat="{ item }">
-        <v-icon @click.stop="chatOpen(item)" >chat</v-icon>
+        <v-icon class="mt-1" @click.stop="chatOpen(item)" color="teal" >chat</v-icon>
       </template>
       <template v-slot:item.action="{ item }">
-        <v-icon @click.stop="editRow(item)" >edit</v-icon>
+        <v-icon class="mr-2" @click.stop="editRow(item)" color="teal" >edit</v-icon>
       </template>
     </v-data-table>
 
@@ -121,10 +121,11 @@ export default {
         this.newQA_dialog.display = true;
     },
     chatOpen(row) {
-      if (this.chatNo === row.no) {
-        this.chatNo = 0;
+      if (this.chatModel.no === row.no) {
+        this.chatModel = JSON.parse(JSON.stringify(row));
+        this.chatModel.no = 0;
       }else{
-        this.chatNo = row.no;
+        this.chatModel = JSON.parse(JSON.stringify(row));
       }
     },
     editRow(item) {
@@ -173,7 +174,7 @@ export default {
   },
   data() {
     return {
-      chatNo: null,
+      chatModel: {},
       headers: [
         { text: "No", value: "no" },
         { text: "日時", value: "qDate" },
@@ -188,7 +189,7 @@ export default {
       QAs: [
         {
           no: 1,
-          qDate: "2020/4/ 13:49",
+          qDate: "2020/4/1 13:49",
           qPerson: "質問 太郎",
           qText: "ログはどこに表示しますか？",
           aDate: "2020/4/2 9:00",
