@@ -119,7 +119,11 @@ export default {
         this.newQA_dialog.display = true;
     },
     clickedRow(row) {
-      this.chatNo = row.no;
+      if (this.chatNo === row.no) {
+        this.chatNo = 0;
+      }else{
+        this.chatNo = row.no;
+      }
     },
     editRow(item) {
       const selectedQA = this.QAs.find(element => element.no === item.no);

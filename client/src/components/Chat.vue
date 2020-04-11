@@ -20,7 +20,9 @@ export default {
   watch: {
     chatNo() {
       this.drawer = true;
-      this.no = this.chatNo;
+      if (this.chatNo !== 0) {
+        this.no = this.chatNo;
+      }
     },
   },
 }
