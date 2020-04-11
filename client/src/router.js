@@ -7,6 +7,7 @@ import About from "./components/About";
 import History from './components/History';
 import QATable from './components/QATable';
 import Settings from './components/Settings';
+import Developers from "./components/Developers";
 
 
 const router = new Router({
@@ -15,6 +16,7 @@ const router = new Router({
       { path: '/history', component: History },
       { path: '/about', component: About },
       { path: '/settings', component: Settings },
+      { path: '/developers', component: Developers },
   ],
   mode: 'history'
 });

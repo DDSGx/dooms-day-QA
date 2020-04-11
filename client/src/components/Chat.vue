@@ -11,23 +11,28 @@
     </div>
     <v-divider class="mb-3"></v-divider>
 
-    <!--  チャット表示  -->
-    <div v-for="(item) in chatModels[no]" v-bind:key="item.id">
-      <chat-line :chatModel="item"></chat-line>
-    </div>
+    <chat-line v-for="(item) in chatModels[no]" v-bind:key="item.id" :chatModel="item"></chat-line>
 
     <!--  入力エリア  -->
     <v-card class="ma-2 mt-5" outlined>
-      <v-textarea v-on:keydown.meta.enter="sendMessage" v-model="text" hide-details class="body-2 pa-1" auto-grow rows="2"></v-textarea>
+      <v-textarea
+        class="body-2 pa-1"
+        v-on:keydown.meta.enter="sendMessage"
+        v-on:keydown.ctrl.enter="sendMessage"
+        v-model="text"
+        hide-details
+        auto-grow
+        rows="2"
+      ></v-textarea>
       <v-card-actions class="pa-0">
         <v-spacer></v-spacer>
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn icon @click="sendMessage" v-on="on">
+            <v-btn :disabled="!text" icon @click="sendMessage" v-on="on">
               <v-icon class="pa-1" medium color="green">send</v-icon>
             </v-btn>
           </template>
-          <span class="caption"> ⌘ + Enter</span>
+          <span class="caption">{{commandNavigation}}</span>
         </v-tooltip>
       </v-card-actions>
     </v-card>
@@ -53,6 +58,15 @@ export default {
       const hour = now.getHours();
       const min = ("0"+now.getMinutes()).slice(-2);
       return `${year}/${mon}/${day} ${hour}:${min}`
+    },
+    commandNavigation() {
+      const ua = window.navigator.userAgent.toLowerCase();
+      if(ua.indexOf("windows nt") !== -1) {
+        return 'CTRL + Enter'
+      }else if(ua.indexOf("mac os x") !== -1) {
+        return '⌘ + Enter'
+      }
+      return ''
     },
   },
   methods: {
