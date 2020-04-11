@@ -28,7 +28,7 @@ export default {
   name: "navigation-drawers",
   data() {
       return {
-          drawer: true,
+          drawer: false,
           items: [
               {title: 'QATable', link: '/', icon: 'dashboard'},
               {title: 'History', link: '/history', icon: 'account_tree'},

@@ -64,7 +64,7 @@ export default {
                 },
                 {
                     date: "2020/4/2 9:00",
-                    user: "回答　次郎",
+                    user: "回答 次郎",
                     status: "回答",
                     content: "別のページに一覧で表示してください",
                 },
@@ -76,7 +76,7 @@ export default {
                 },
                 {
                     date: "2020/4/2 13:21",
-                    user: "高橋　次郎",
+                    user: "高橋 次郎",
                     status: "回答",
                     content: "yyyy/MM/dd hh:mmで表示してください",
                 },
@@ -88,13 +88,13 @@ export default {
                 },
                 {
                     date: "2020/4/2 13:30",
-                    user: "山田　次郎",
+                    user: "山田 次郎",
                     status: "回答",
                     content: "必要です",
                 },
                 {
                     date: "2020/4/3 13:30",
-                    user: "山田　次郎",
+                    user: "山田 次郎",
                     status: "変更",
                     content: "「ログはどこに標示しますか？」を「ログはどこに表示しますか？」に変更しました。",
                 },

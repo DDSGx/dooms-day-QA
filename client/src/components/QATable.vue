@@ -1,5 +1,7 @@
 <template>
   <div>
+    <chat :chatNo="chatNo"/>
+
     <v-btn @click="addRow">add row</v-btn>
     <v-data-table
       :headers="headers"
@@ -105,8 +107,13 @@
 </template>
 
 <script>
+import Chat from '@/components/Chat'
+
 export default {
   name: "QATable",
+  components: {
+    Chat,
+  },
   methods: {
     addRow() {
       this.newQA_dialog.display = true;
@@ -158,6 +165,7 @@ export default {
   },
   data() {
     return {
+      chatNo: null,
       headers: [
         { text: "No", value: "no" },
         { text: "日時", value: "qDate" },
