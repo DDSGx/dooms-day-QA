@@ -14,7 +14,7 @@
         <v-btn @click.stop="editRow(item)">編集</v-btn>
         <v-btn @click.stop="deleteRow(item)">削除</v-btn>
       </template>
-    </template>
+    </v-data-table>
 
     <v-row justify="center">
       <v-dialog v-model="dialog.display" persistent max-width="600px">
